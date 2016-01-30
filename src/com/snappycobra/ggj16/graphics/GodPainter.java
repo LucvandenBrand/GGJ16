@@ -129,9 +129,9 @@ public class GodPainter extends AbstractPainter{
 		int hudWidth = sacrefice.getWidth();
 		int hudHeight = sacrefice.getHeight();
 		int offY = (int) (5*Math.cos(alfa));
-		g.drawImage(arrowUp, x+hudWidth/2-uArrowWidth/2-15, 55+offY, null);
-		g.drawImage(arrowDown, x+hudWidth/2-dArrowWidth/2-15, hudHeight-offY, null);
-		g.drawImage(sacrefice, x, 0, null);
+		g.drawImage(arrowUp, x+hudWidth/2-uArrowWidth/2-15-shrineImg.getWidth()/2, 55+offY, null);
+		g.drawImage(arrowDown, x+hudWidth/2-dArrowWidth/2-15-shrineImg.getWidth()/2, hudHeight-offY, null);
+		g.drawImage(sacrefice, x-shrineImg.getWidth()/2, 0, null);
 		g.drawImage(shrineImg, x, y-shrineImg.getHeight(), null);
 		g.setColor(Color.BLACK);
 		g.fillRect(x, y, 10, 10);
