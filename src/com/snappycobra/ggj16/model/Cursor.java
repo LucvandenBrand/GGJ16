@@ -1,6 +1,7 @@
 package com.snappycobra.ggj16.model;
 
 import org.dyn4j.dynamics.Body;
+import org.dyn4j.geometry.AABB;
 
 import com.snappycobra.motor.maps.GameObject;
 
@@ -19,7 +20,7 @@ public class Cursor {
 		this.mapWidth = mapWidth;
 		this.movingLeft=false;
 		this.movingRight=false;
-		position = mapWidth/2;
+		position =0;// mapWidth/2;
 	}
 	
 	public void click() {
@@ -49,7 +50,6 @@ public class Cursor {
 		} else if (movingLeft) {
 			this.moveLeft();
 		}
-		System.out.println(position);
 	}
 	
 	public void moveRight() {
@@ -58,13 +58,13 @@ public class Cursor {
 
 	public GameObject select() {
 		for(ResourcePoint rp : worldMap.getResourcePointList()) {
-			if (inBoundaryBox(rp.getBody())) {
+			if (inSelection(rp.getBody())) {
 				System.out.println("Resource Selected");
 				return rp;
 			}
 		}
 		for(Unit unit : owner.getUnitList()) {
-			if (inBoundaryBox(unit.getBody())) {
+			if (inSelection(unit.getBody())) {
 				System.out.println("UNIT Selected");
 				return unit;
 			}
@@ -76,6 +76,14 @@ public class Cursor {
 		System.out.println("pos:"+position);
 		System.out.println("minx:"+body.createAABB().getMinX()+ "maxX"+body.createAABB().getMaxX());
 		return position > body.createAABB().getMinX() && position < body.createAABB().getMaxX();
+	}
+	
+	private boolean inSelection(Body body) {
+		AABB aabb = body.createAABB();
+		double width = aabb.getWidth();
+		double minX = body.getWorldCenter().x-width/2+7;
+		double maxX = minX+4;
+		return position > minX && position < maxX;
 	}
 
 	
