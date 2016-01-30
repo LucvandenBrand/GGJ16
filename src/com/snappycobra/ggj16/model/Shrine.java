@@ -16,5 +16,7 @@ public class Shrine extends GameObject {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
 
 }

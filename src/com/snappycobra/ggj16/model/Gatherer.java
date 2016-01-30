@@ -15,7 +15,7 @@ public class Gatherer extends Job {
 		this.gatherAt = gatherAt;
 		this.sprite = new Sprite(new Frame("data/images/Workers/Worker_Blue.png", 10));
 		yield = 0;
-		maxYield = 5;
+		maxYield = 1;
 	}
 	
 	public void update() {

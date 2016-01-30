@@ -19,16 +19,18 @@ public class MastermindGame {
 		oldTries = new ArrayList<>();
 	}
 	
-	public void addResource(Resource res) {
+	public boolean addResource(Resource res) {
 		currentTry.addResource(res);
 		if (currentTry.isFull()) {
 			if (currentTry.Compare(solution)) {
 				System.out.println("WINNNEER");
+				return true;
 			} else {
 				List<Integer> result = currentTry.checkInSolution(solution);
 				oldTries.add(new OldCombination(currentTry,result.get(1),result.get(2)));
 				currentTry = new Combination(length);
 			}
 		}
+		return false;
 	}
 }

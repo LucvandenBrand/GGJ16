@@ -23,12 +23,11 @@ public class GameModel extends Game {
 		
 		worldMap = new WorldMap(map.getGameObjectsWithProp("resource"));
 		addPlayers(amountPlayers, map, worldMap);
-		
 		Body unitBody = new Body();
-		unitBody.shift(new Vector2(5,18));
+		unitBody.shift(new Vector2(0,18));
 		unitBody.addFixture(new Rectangle(3,3));
 		Unit unit = new Unit("harry",unitBody,playerList.get(1));
-		unit.addJob(new JobLess());
+		unit.setJob(new JobLess());
 		playerList.get(1).addUnit(unit);
 		/*unit = new Unit("harry",unitBody,playerList.get(0));
 		unit.addJob(new JobLess());

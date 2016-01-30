@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.dyn4j.dynamics.Body;
 
+import com.snappycobra.ggj16.mastermind.Mastermind;
 import com.snappycobra.motor.maps.GameObject;
 import com.snappycobra.motor.maps.GameObjectGrabber;
 import com.snappycobra.motor.maps.Map;
@@ -14,6 +15,7 @@ public class Player{
 	private List<Building> buildingList = new ArrayList<Building>();
 	private List<ResourceAmount> resourceList = new ArrayList<ResourceAmount>();
 	private Cursor cursor;
+	private Mastermind mastermind;
 	
 	public Player(int playerNumber, Map map) {
 		fillBuildingList(playerNumber, map);
@@ -60,5 +62,11 @@ public class Player{
 	
 	public void addUnit(Unit unit) {
 		unitList.add(unit);
+	}
+	
+	public void playMastermind(Resource res) {
+		if (mastermind.addResource(res)) {
+			System.out.println("Je bent de ownende supah winner.");
+		}
 	}
 }

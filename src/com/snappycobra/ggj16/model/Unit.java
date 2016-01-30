@@ -1,6 +1,8 @@
 package com.snappycobra.ggj16.model;
 
 import org.dyn4j.dynamics.Body;
+import org.dyn4j.geometry.Rectangle;
+import org.dyn4j.geometry.Vector2;
 
 import com.snappycobra.motor.maps.GameObject;
 
@@ -19,6 +21,12 @@ public class Unit extends GameObject{
 	public void init() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void createBody() {
+		Body unitBody = new Body();
+		unitBody.shift(new Vector2(0,18));
+		unitBody.addFixture(new Rectangle(3,3));
 	}
 	
 	public boolean moveTo(Body destination) {
@@ -59,11 +67,11 @@ public class Unit extends GameObject{
 		return owner;
 	}
 	
-	public void addJob(Job job) {
-		this.job = job;
+	public void switchJob(Job job) {
+		this.job = new GetNewJob(job, this.job);
 	}
-	public void switchJob(Gatherer gatherer) {
-		// TODO Auto-generated method stub
-		
+
+	public void setJob(Job job) {
+		this.job = job;
 	}
 }

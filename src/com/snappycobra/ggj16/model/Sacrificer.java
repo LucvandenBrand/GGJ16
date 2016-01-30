@@ -7,14 +7,14 @@ public class Sacrificer extends Job {
 	private Shrine shrine;
 	private int state;
 	private Unit owner;
-	private ResourceAmount resourceAmount;
+	private Resource resource;
 	
-	public Sacrificer(Unit owner, Shrine shrine, ResourceAmount res) {
+	public Sacrificer(Unit owner, Shrine shrine, Resource res) {
 		this.sprite = new Sprite(new Frame("data/images/Workers/Worker_Red.png", 10));
 		this.owner = owner;
 		this.shrine = shrine;
 		this.state = 1;
-		this.resourceAmount = res;
+		this.resource = res;
 	}
 	
 	@Override
@@ -35,7 +35,7 @@ public class Sacrificer extends Job {
 	}
 	
 	public void Offer() {
-		
+		owner.getOwner().playMastermind(resource);
 	}
 
 }
