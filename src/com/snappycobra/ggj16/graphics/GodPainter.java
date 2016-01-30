@@ -91,14 +91,14 @@ public class GodPainter extends AbstractPainter{
 	}
 	
 	protected void drawMasterMind(Graphics2D g, int offY, float scaledY) {
-		int level = 1;
+		int level = 5;
 		BufferedImage nodes = ImageManager.getImage("data/images/MasterMind/"+level+"-nodes.png");
 		int width = (int) (mindBoard.getWidth()*scaledY);
 		int height = (int) (mindBoard.getHeight()*scaledY);
 		int nodeWidth = (int) (nodes.getWidth()*scaledY);
 		int nodeHeight = (int) (nodes.getHeight()*scaledY);
-		int nodesDX = (int)(80*scaledY);
-		int nodesDY = (int)(80*scaledY);
+		int nodesDX = (int)(97*scaledY);
+		int nodesDY = (int)(129*scaledY);
 		g.drawImage(mindBoard, 0, offY, width, height, null);
 		g.drawImage(nodes, nodesDX, nodesDY+offY, nodeWidth, nodeHeight, null);
 	}
