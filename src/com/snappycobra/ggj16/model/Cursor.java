@@ -53,7 +53,7 @@ public class Cursor {
 	}
 	
 	public void moveRight() {
-		moveCursor(-SPEED);
+		moveCursor(SPEED);
 	}
 
 	public GameObject select() {
@@ -80,7 +80,7 @@ public class Cursor {
 
 	
 	public void moveLeft() {
-		moveCursor(SPEED);
+		moveCursor(-SPEED);
 	}
 	
 	public void moveCursor(double speed) {
