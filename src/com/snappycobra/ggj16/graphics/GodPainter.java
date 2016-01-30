@@ -33,8 +33,8 @@ public class GodPainter extends AbstractPainter{
 	private List<Player> players;
 	private int mapWidth, mapHeight;
 	private BufferedImage mapBuffer;
-	private BufferedImage air, path, foreground, scrap1, scrap2, shrineImg, arrowUp;
-	private int scroll1, scroll2;
+	private BufferedImage air, path, foreground, scrap1, scrap2, shrineImg, arrowUp, arrowDown, sacrefice;
+	private float alfa;
 	
 	public GodPainter(GameModel gameModel) {
 		super(gameModel);
@@ -48,17 +48,19 @@ public class GodPainter extends AbstractPainter{
 		this.foreground = ImageManager.getImage("data/images/voorgrond.png");
 		this.scrap1 = ImageManager.getImage("data/images/background_Scrap1.png");
 		this.scrap2 = ImageManager.getImage("data/images/background_Scrap2.png");
-		this.shrineImg = ImageManager.getImage("data/images/Hud_Sacrifice.png");
+		this.sacrefice = ImageManager.getImage("data/images/Hud_Sacrifice.png");
+		this.shrineImg = ImageManager.getImage("data/images/Shrine.png");
 		this.arrowUp = ImageManager.getImage("data/images/Interface_Pijl_up.png");
+		this.arrowDown = ImageManager.getImage("data/images/Interface_Pijl_down.png");
 		
-		this.scroll1=0;
-		this.scroll2=0;
+		this.alfa=0;
 	}
 
 	@Override
 	protected void drawFrame(Graphics2D g) {
 		bufferMap();
-		scroll2 += 10;
+		alfa += 0.1*Timer.getPassedTime()/Math.pow(10, 7);
+		alfa %= 2*Math.PI;
 		this.drawScreens(g);
 		g.setColor(new Color(1,1,1));
 	}
@@ -72,7 +74,7 @@ public class GodPainter extends AbstractPainter{
 		int i=0;
 		for (Player player : players) {
 			Cursor cursor = player.getCursor();
-			int posX = (int) (cursor.getPosition()*getMap().getTileWidth()*scaledY);
+			int posX = (int) (getMap().getWidth()-cursor.getPosition()*getMap().getTileWidth()*scaledY);
 			//System.out.println(posX);
 			this.drawTiled(g, air, i*(sHeight/numPlayers));
 			//g.drawImage(air, 0, i*(sHeight/numPlayers), (int)(air.getWidth()*scaledY), (int)(air.getHeight()*scaledY), null);
@@ -95,6 +97,8 @@ public class GodPainter extends AbstractPainter{
 			int width = sprite.getImage().getWidth();
 			int height = sprite.getImage().getHeight();
 			this.drawSprite(g,sprite, x, y-height);
+			g.setColor(Color.BLACK);
+			g.fillRect(x, y, 10, 10);
 		}
 	}
 	
@@ -109,6 +113,8 @@ public class GodPainter extends AbstractPainter{
 				int width = sprite.getImage().getWidth();
 				int height = sprite.getImage().getHeight();
 				this.drawSprite(g, sprite, x, y-height);
+				g.setColor(Color.BLACK);
+				g.fillRect(x, y, 10, 10);
 			}
 		}
 	}
@@ -118,8 +124,17 @@ public class GodPainter extends AbstractPainter{
 		Shrine shrine = new GameObjectGrabber<Shrine>().getObjects(map, Shrine.class).get(0);
 		int x = getX(shrine.getBody());
 		int y = getY(shrine.getBody());
-		g.drawImage(arrowUp, x+shrineImg.getWidth()/2, 0, null);
-		g.drawImage(shrineImg, x, 0, null);
+		int uArrowWidth = arrowUp.getWidth();
+		int dArrowWidth = arrowDown.getWidth();
+		int hudWidth = sacrefice.getWidth();
+		int hudHeight = sacrefice.getHeight();
+		int offY = (int) (5*Math.cos(alfa));
+		g.drawImage(arrowUp, x+hudWidth/2-uArrowWidth/2-15, 55+offY, null);
+		g.drawImage(arrowDown, x+hudWidth/2-dArrowWidth/2-15, hudHeight-offY, null);
+		g.drawImage(sacrefice, x, 0, null);
+		g.drawImage(shrineImg, x, y-shrineImg.getHeight(), null);
+		g.setColor(Color.BLACK);
+		g.fillRect(x, y, 10, 10);
 	}
 	
 	protected int getX(Body body) {
