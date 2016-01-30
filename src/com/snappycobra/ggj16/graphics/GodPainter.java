@@ -34,6 +34,7 @@ public class GodPainter extends AbstractPainter{
 	private int mapWidth, mapHeight;
 	private BufferedImage mapBuffer;
 	private BufferedImage air, path, foreground, scrap1, scrap2, shrineImg, arrowUp, arrowDown, sacrefice;
+	private BufferedImage mindBoard;
 	private float alfa;
 	
 	public GodPainter(GameModel gameModel) {
@@ -52,6 +53,7 @@ public class GodPainter extends AbstractPainter{
 		this.shrineImg = ImageManager.getImage("data/images/Shrine.png");
 		this.arrowUp = ImageManager.getImage("data/images/Interface_Pijl_up.png");
 		this.arrowDown = ImageManager.getImage("data/images/Interface_Pijl_down.png");
+		this.mindBoard = ImageManager.getImage("data/images/MasterMind/Hud_Mastermind.png");
 		
 		this.alfa=0;
 	}
@@ -74,17 +76,31 @@ public class GodPainter extends AbstractPainter{
 		int i=0;
 		for (Player player : players) {
 			Cursor cursor = player.getCursor();
-			int posX = (int) (getMap().getWidth()-cursor.getPosition()*getMap().getTileWidth()*scaledY);
+			int posX = (int) (getMap().getWidth()*scaledY-cursor.getPosition()*getMap().getTileWidth()*scaledY);
 			//System.out.println(posX);
 			this.drawTiled(g, air, i*(sHeight/numPlayers));
 			//g.drawImage(air, 0, i*(sHeight/numPlayers), (int)(air.getWidth()*scaledY), (int)(air.getHeight()*scaledY), null);
 			//g.drawImage(air, (int)(air.getWidth()*scaledY), i*(sHeight/numPlayers), (int)(air.getWidth()*scaledY), (int)(air.getHeight()*scaledY), null);
 			this.drawParralax(g, sWidth/2+posX/2, i*(sHeight/numPlayers));
 			this.drawLoopMap(g, sWidth/2+posX, i*(sHeight/numPlayers));
+			this.drawMasterMind(g, i*(sHeight/numPlayers), scaledY*1.2f);
 			i++;
 		}
 		g.setColor(Color.BLACK);
 		g.drawLine(sWidth/2, sHeight, sWidth/2, 0);
+	}
+	
+	protected void drawMasterMind(Graphics2D g, int offY, float scaledY) {
+		int level = 1;
+		BufferedImage nodes = ImageManager.getImage("data/images/MasterMind/"+level+"-nodes.png");
+		int width = (int) (mindBoard.getWidth()*scaledY);
+		int height = (int) (mindBoard.getHeight()*scaledY);
+		int nodeWidth = (int) (nodes.getWidth()*scaledY);
+		int nodeHeight = (int) (nodes.getHeight()*scaledY);
+		int nodesDX = (int)(80*scaledY);
+		int nodesDY = (int)(80*scaledY);
+		g.drawImage(mindBoard, 0, offY, width, height, null);
+		g.drawImage(nodes, nodesDX, nodesDY+offY, nodeWidth, nodeHeight, null);
 	}
 	
 	protected void drawResources(Graphics2D g) {
