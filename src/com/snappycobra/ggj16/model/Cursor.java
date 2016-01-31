@@ -9,7 +9,7 @@ import com.snappycobra.motor.maps.GameObject;
 public class Cursor {
 	private double position;
 	private boolean movingLeft, movingRight;
-	private static final double SPEED=0.5;
+	private static final double SPEED=1;
 	private double mapWidth;
 	private Player owner;
 	private WorldMap worldMap;
@@ -52,6 +52,11 @@ public class Cursor {
 				Shrine shrine = (Shrine) go;
 				shrine.choseOffer(owner, selectedUnit);
 			}
+		} else if (go instanceof Base) {
+			/*Base base = (Base) go;
+			Unit newUnit = new Unit(owner, base);
+			newUnit.setJob(new JobLess());
+			owner.addUnit(newUnit);*/
 		}
 	}
 	
