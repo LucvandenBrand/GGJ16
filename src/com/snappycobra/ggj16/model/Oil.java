@@ -8,6 +8,7 @@ import com.snappycobra.motor.graphics.Sprite;
 public class Oil extends Resource {
 	
 	public Oil() {
+		name = "Oil";
 		this.sprite = new Sprite(new Frame("data/images/Resources/resource-oil.png", 10));
 	}
 	

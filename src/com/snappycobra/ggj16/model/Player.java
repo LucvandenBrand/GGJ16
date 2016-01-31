@@ -27,8 +27,10 @@ public class Player{
 	}
 	
 	public void addResource(String resName, int amount) {
+		System.out.println("add the resource");
 		for(ResourceAmount res : resourceAmountList) {
 			if (res.getResName().equals(resName)) {
+				System.out.println("match");
 				res.addAmount(amount);
 			}
 		}
