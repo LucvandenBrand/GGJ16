@@ -65,7 +65,7 @@ public class Cursor {
 	}
 
 	public GameObject select() {
-		/*if (selectedUnit != null) {
+		if (selectedUnit != null) {
 			for(ResourcePoint rp : worldMap.getResourcePointList()) {
 				if (inResSelection(rp.getBody())) {
 					System.out.println("Resource Selected");
@@ -84,7 +84,7 @@ public class Cursor {
 				System.out.println("UNIT Selected");
 				return unit;
 			}
-		}*/
+		}
 		if (selectedUnit == null) {
 			if (inBaseSelection(owner.getBuildingList().get(0).getBody())) {
 				System.out.println("Base Selected");
