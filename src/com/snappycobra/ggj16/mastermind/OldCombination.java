@@ -14,6 +14,7 @@ public class OldCombination {
 		resourceList = com.getResourceList();
 		this.poscol = poscol;
 		this.col = col;
+		System.out.println("poscol: "+poscol+" col: "+col);
 	}
 	
 	public int getSize() {

@@ -205,7 +205,7 @@ public class GodPainter extends AbstractPainter{
 				y=125;
 				break;
 			}
-			switch (currentTry.get(i).getResName()) {
+			switch (currentTry.get(i).getRealName()) {
 			case "Oil":
 				lamp = lampY;
 				break;
