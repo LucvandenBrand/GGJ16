@@ -6,8 +6,8 @@ import com.snappycobra.motor.graphics.Sprite;
 public class Gear extends Resource {
 
 	String sound = "data/sounds/fx/gears.wav";
-	String walkSprite = "data/images/creatures/player_walk_red_";
-	String workSprite = "data/images/creatures/player_work_red_";
+	String walkSprite = "data/images/Creatures/player_walk_red_";
+	String workSprite = "data/images/Creatures/player_work_red_";
 	
 	public Gear() {
 		name = "Gear";

@@ -6,8 +6,8 @@ import com.snappycobra.motor.graphics.Sprite;
 public class Silverfish extends Resource {
 	
 	String sound = "data/sounds/fx/silver.wav";
-	String walkSprite = "data/images/creatures/player_walk_blue_";
-	String workSprite = "data/images/creatures/player_work_blue_";
+	String walkSprite = "data/images/Creatures/player_walk_blue_";
+	String workSprite = "data/images/Creatures/player_work_blue_";
 	
 	public Silverfish() {
 		name = "Silverfish";
