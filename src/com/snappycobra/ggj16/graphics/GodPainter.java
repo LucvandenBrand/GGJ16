@@ -1,9 +1,15 @@
 package com.snappycobra.ggj16.graphics;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import org.dyn4j.dynamics.Body;
@@ -39,6 +45,7 @@ public class GodPainter extends AbstractPainter{
 	private BufferedImage mindBoard, pastMoveBoard, lampB, lampG, lampR, lampY;
 	private BufferedImage cloud, pointer1, pointer2, iconGear, iconOil, iconUranium, iconSilver;
 	private Sprite godSprite = new Sprite(new Frame("data/images/Creatures/God.png", 10));
+	private Font UIFont;
 	private float alfa;
 	
 	public GodPainter(GameModel gameModel) {
@@ -74,6 +81,15 @@ public class GodPainter extends AbstractPainter{
 		this.lampR = ImageManager.getImage("data/images/MasterMind/Lamp_Red.png");
 		this.lampY = ImageManager.getImage("data/images/MasterMind/Lamp_Yellow.png");
 		
+		try (InputStream stream = new BufferedInputStream(new FileInputStream("data/fonts/rexlia.ttf"))){
+			this.UIFont = Font.createFont(Font.TRUETYPE_FONT, stream);
+		} catch (FontFormatException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 		this.alfa=0;
 	}
 
@@ -102,6 +118,7 @@ public class GodPainter extends AbstractPainter{
 			//g.drawImage(air, (int)(air.getWidth()*scaledY), i*(sHeight/numPlayers), (int)(air.getWidth()*scaledY), (int)(air.getHeight()*scaledY), null);
 			this.drawLoopMap(g, sWidth/2+posX, i*(sHeight/numPlayers));
 			this.drawMasterMind(g, player, i*(sHeight/numPlayers), scaledY*1.2f);
+			this.drawStats(g, player, i*(sHeight/numPlayers), scaledY);
 			i++;
 		}
 		g.setColor(new Color(1,.5f,.5f,0.1f));
@@ -118,11 +135,29 @@ public class GodPainter extends AbstractPainter{
 	}
 	
 	protected void drawStats(Graphics2D g, Player player, int offY, float scaledY) {
+		
 		int sWidth = this.getWidth();
 		int sHeight = this.getHeight();
-		int iconWidth = iconGear.getWidth();
+		int iconWidth = (int) (iconGear.getWidth()*scaledY*2);
+		int iconHeight = (int) (iconGear.getHeight()*scaledY*2);
 		
-		//g.drawImage(iconGear, sWidth/2-pointWidth/2, 0, pointWidth, pointHeight, null);
+		g.setColor(new Color(0.7f,0,0));
+		this.drawRAlignedString(g, "2", sWidth-iconWidth-(int)(15*scaledY), (int)(offY+17*scaledY), 55*scaledY, UIFont);
+		g.drawImage(iconGear, sWidth-iconWidth, offY, iconWidth, iconHeight, null);
+		g.setColor(new Color(1f,0.7f,0.2f));
+		this.drawRAlignedString(g, "8", sWidth-iconWidth-(int)(15*scaledY), (int)(offY+iconHeight+20*scaledY), 55*scaledY, UIFont);
+		g.drawImage(iconOil, sWidth-iconWidth, offY+iconHeight, iconWidth, iconHeight, null);
+		g.setColor(new Color(0.2f,0.2f,0.7f));
+		this.drawRAlignedString(g, "9", sWidth-iconWidth-(int)(15*scaledY), (int)(offY+iconHeight*2+20*scaledY), 55*scaledY, UIFont);
+		g.drawImage(iconSilver, sWidth-iconWidth, offY+iconHeight*2, iconWidth, iconHeight, null);
+		g.setColor(new Color(0.2f,0.6f,0.2f));
+		this.drawRAlignedString(g, "3", sWidth-iconWidth-(int)(15*scaledY), (int)(offY+iconHeight*3+20*scaledY), 55*scaledY, UIFont);
+		g.drawImage(iconUranium, sWidth-iconWidth, offY+iconHeight*3, iconWidth, iconHeight, null);
+	}
+	
+	protected void drawRAlignedString(Graphics2D g, String string, int x, int y, float size, Font font) {
+		int width = (int) this.getStringSize(g, string, size, font).getWidth();
+		this.drawString(g, string, x-width, y, size, false, font);
 	}
 	
 	protected void drawMasterMind(Graphics2D g, Player player, int offY, float scaledY) {
