@@ -11,10 +11,13 @@ public class Unit extends GameObject{
 	private double walkSpeed;
 	private Base base;
 	private Player owner;
+	private boolean switching;
 	
-	public Unit(String name, Body body, Player owner) {
+	public Unit(String name, Body body, Player owner, Base base) {
 		super(name, body);
 		this.owner = owner;
+		this.base = base;
+		walkSpeed = 1;
 	}
 
 	@Override
@@ -26,22 +29,23 @@ public class Unit extends GameObject{
 	public void createBody() {
 		Body unitBody = new Body();
 		unitBody.shift(new Vector2(0,18));
-		unitBody.addFixture(new Rectangle(3,3));
+		unitBody.addFixture(new Rectangle(10,3));
 	}
 	
 	public boolean moveTo(Body destination) {
 		double ownX = this.getBody().getWorldCenter().x;
 		double desX = destination.getWorldCenter().x;
-		double direction = ownX-desX;
-		if (Math.abs(direction) <= walkSpeed) {
-			ownX = desX;
+		System.out.println("current x:"+ ownX+" destination x:" + desX);
+		double direction = desX-ownX;
+		if (Math.abs(direction)<=walkSpeed) {
+			this.getBody().translate(direction,0);
 			return true;
-		}else if (direction > 0) {
-			ownX += walkSpeed;
-		}else if (direction < 0) {
-			ownX -= walkSpeed;
 		}
-		this.getBody().getWorldCenter().x = ownX;
+		if (direction > 0) {
+			this.getBody().translate(walkSpeed,0);
+		} else {
+			this.getBody().translate(-walkSpeed,0);
+		}
 		return false;
 	}
 	
@@ -52,7 +56,7 @@ public class Unit extends GameObject{
 	}
 	
 	public void removeJob() {
-		job = null;
+		job = new JobLess();
 	}
 	
 	public Job getJob() {
@@ -74,4 +78,5 @@ public class Unit extends GameObject{
 	public void setJob(Job job) {
 		this.job = job;
 	}
+	
 }

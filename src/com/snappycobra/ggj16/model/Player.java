@@ -13,7 +13,7 @@ import com.snappycobra.motor.maps.Map;
 public class Player{
 	private List<Unit> unitList = new ArrayList<Unit>();
 	private List<Building> buildingList = new ArrayList<Building>();
-	private List<ResourceAmount> resourceList = new ArrayList<ResourceAmount>();
+	private List<ResourceAmount> resourceAmountList = new ArrayList<ResourceAmount>();
 	private Cursor cursor;
 	private Mastermind mastermind;
 	
@@ -22,11 +22,20 @@ public class Player{
 	}
 	
 	public void addResource(String resName, int amount) {
-		for(ResourceAmount res : resourceList) {
+		for(ResourceAmount res : resourceAmountList) {
 			if (res.getResName().equals(resName)) {
 				res.addAmount(amount);
 			}
 		}
+	}
+	
+	public boolean removeResource(String resName, int amount) {
+		for(ResourceAmount res : resourceAmountList) {
+			if (res.getResName().equals(resName)) {
+				return res.useAmount(amount);
+			}
+		}
+		return false;
 	}
 	
 	public void fillBuildingList(int playerNumber, Map map) {
@@ -68,5 +77,9 @@ public class Player{
 		if (mastermind.addResource(res)) {
 			System.out.println("Je bent de ownende supah winner.");
 		}
+	}
+	
+	public List<ResourceAmount> getResourceAmountList() {
+		return resourceAmountList;
 	}
 }
