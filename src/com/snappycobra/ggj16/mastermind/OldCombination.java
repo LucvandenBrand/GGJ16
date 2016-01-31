@@ -15,4 +15,21 @@ public class OldCombination {
 		this.poscol = poscol;
 		this.col = col;
 	}
+	
+	public int getSize() {
+		return resourceList.size();
+	}
+
+	public List<Resource> getResourceList() {
+		return resourceList;
+	}
+
+	public int getPoscol() {
+		return poscol;
+	}
+
+	public int getCol() {
+		return col;
+	}
+	
 }

@@ -3,6 +3,7 @@ package com.snappycobra.ggj16.model;
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.geometry.AABB;
 
+import com.snappycobra.ggj16.Music.MusicPlayer;
 import com.snappycobra.motor.maps.GameObject;
 
 public class Cursor {
@@ -13,6 +14,7 @@ public class Cursor {
 	private Player owner;
 	private WorldMap worldMap;
 	private Unit selectedUnit;
+	private MusicPlayer musicPlayer = new MusicPlayer();
 	
 	public Cursor(double mapWidth, Player player, WorldMap worldMap) {
 		this.owner = player;
@@ -39,7 +41,8 @@ public class Cursor {
 				//Job newJob = new Gatherer(selectedUnit, (ResourcePoint) go);
 				//selectedUnit.switchJob(newJob);
 				System.out.println("give new job");
-				System.out.println(go);
+				System.out.println(((ResourcePoint) go).getResource().getSound());
+				musicPlayer.playSound(((ResourcePoint) go).getResource().getSound());
 				//selectedUnit.setJob(new TestJob((ResourcePoint) go, selectedUnit));
 				selectedUnit.setJob(new Gatherer(selectedUnit, (ResourcePoint) go ));
 				selectedUnit = null;

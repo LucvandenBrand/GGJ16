@@ -17,7 +17,7 @@ public class MastermindGame {
 		solution = Combination.generateSolution(length);
 		System.out.println(solution);
 		currentTry = new Combination(length);
-		oldTries = new ArrayList<>();
+		oldTries = new ArrayList<OldCombination>();
 	}
 	
 	public boolean addResource(Resource res) {
@@ -39,5 +39,9 @@ public class MastermindGame {
 	
 	public List<Resource> getCurrentTry() {
 		return currentTry.getResourceList();
+	}
+	
+	public List<OldCombination> getOldTries() {
+		return this.oldTries;
 	}
 }

@@ -32,4 +32,8 @@ public class Mastermind {
 		return mastermindGame.getCurrentTry();
 	}
 	
+	public MastermindGame getMastermindGame() {
+		return this.mastermindGame;
+	}
+	
 }
