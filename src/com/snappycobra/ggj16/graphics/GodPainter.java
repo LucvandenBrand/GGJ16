@@ -117,6 +117,10 @@ public class GodPainter extends AbstractPainter{
 		g.drawImage(pointer1, sWidth/2-pointWidth/2, sHeight-pointHeight, pointWidth, pointHeight, null);
 	}
 	
+	protected void drawStats(Graphics2D g, Player player, int offY, float scaledY) {
+		g.drawImage(iconGear, sWidth/2-pointWidth/2, 0, pointWidth, pointHeight, null);
+	}
+	
 	protected void drawMasterMind(Graphics2D g, Player player, int offY, float scaledY) {
 		Mastermind mastermind = player.getMastermind();
 		int level = mastermind.getLength();
