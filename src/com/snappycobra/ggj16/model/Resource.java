@@ -32,6 +32,8 @@ public abstract class Resource{
 		return "MAG NIET";
 	}
 	
+	public abstract String getSound();
+	
 	public Sprite getSprite() {
 		return this.sprite;
 	}
