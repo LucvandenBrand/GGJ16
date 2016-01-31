@@ -49,8 +49,8 @@ public class Cursor {
 			}
 		} else if (go instanceof Shrine) {
 			if (selectedUnit != null) {
-				System.out.print("time to chose");
-				
+				Shrine shrine = (Shrine) go;
+				shrine.choseOffer(owner, selectedUnit);
 			}
 		}
 	}
@@ -159,6 +159,10 @@ public class Cursor {
 
 	public void setMovingRight(boolean movingRight) {
 		this.movingRight = movingRight;
+	}
+	
+	public WorldMap getWorldMap() {
+		return this.worldMap;
 	}
 	
 }

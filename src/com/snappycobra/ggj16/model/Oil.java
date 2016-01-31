@@ -10,6 +10,7 @@ public class Oil extends Resource {
 	String sound = "data/sounds/fx/oil.wav";
 	
 	public Oil() {
+		name = "Oil";
 		this.sprite = new Sprite(new Frame("data/images/Resources/resource-oil.png", 10));
 	}
 	

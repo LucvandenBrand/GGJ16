@@ -21,7 +21,7 @@
     <property name="resource" value="Oil"/>
    </properties>
   </object>
-  <object name="Shrine" type="com.snappycobra.ggj16.model.Shrine" x="3903" y="761" width="89" height="91">
+  <object name="Shrine" type="com.snappycobra.ggj16.model.Shrine" x="3745" y="761" width="89" height="91">
    <properties>
     <property name="shrine" value=""/>
    </properties>

@@ -7,6 +7,7 @@ import com.snappycobra.motor.maps.GameObject;
 
 public abstract class Resource{
 	protected Sprite sprite;
+	protected String name;
 	
 	public static Resource getResource(String resName) {
 		switch (resName) {
@@ -32,7 +33,12 @@ public abstract class Resource{
 		return "MAG NIET";
 	}
 	
+
 	public abstract String getSound();
+
+	public String getRealName(){
+		return name;
+	}
 	
 	public Sprite getSprite() {
 		return this.sprite;

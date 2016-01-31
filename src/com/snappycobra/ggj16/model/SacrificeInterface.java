@@ -16,13 +16,20 @@ public class SacrificeInterface {
 	}
 	
 	public String getSelected() {
-		return possibleResourceList.get(selected);
+		String selectedRes = "";
+		if (possibleResourceList.size() > 0) {
+			selectedRes = possibleResourceList.get(selected);
+		}
+		return selectedRes;
 	}
 	
 	public void confirm() {
-		String resName = possibleResourceList.get(selected);
-		if (unit.getOwner().removeResource(resName, 1))
-		unit.switchJob(new Sacrificer(unit, shrine, Resource.getResource(resName)));
+		String resName = getSelected();
+		if (resName != "") {
+			System.out.println("timeToOffer");
+			if (unit.getOwner().removeResource(resName, 1))	
+			unit.switchJob(new Sacrificer(unit, shrine, Resource.getResource(resName)));
+		}
 		dismiss();
 	}
 	
@@ -31,13 +38,17 @@ public class SacrificeInterface {
 	}
 	
 	public void up() {
-		selected = (selected+1)%possibleResourceList.size();
+		if (possibleResourceList.size() !=0) {
+			selected = (selected+1)%possibleResourceList.size();
+		}
 	}
 	
 	public void down() {
-		selected = selected-1;
-		if (selected < 0) {
-			selected = selected+possibleResourceList.size();
+		if (possibleResourceList.size() !=0) {
+			selected = selected-1;
+			if (selected < 0) {
+				selected = selected+possibleResourceList.size();
+			}
 		}
 	}
 }
