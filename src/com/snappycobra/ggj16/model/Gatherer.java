@@ -43,7 +43,7 @@ public class Gatherer extends Job {
 	
 	public void Work(){
 		System.out.println("working");
-		yield = yield+0.1;
+		yield = yield+0.02;
 	}
 	
 	public void storeResources() {
