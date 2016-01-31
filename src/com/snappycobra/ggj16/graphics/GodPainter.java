@@ -271,12 +271,12 @@ public class GodPainter extends AbstractPainter{
 		int dArrowWidth = arrowDown.getWidth();
 		int hudWidth = sacrefice.getWidth();
 		int hudHeight = sacrefice.getHeight();
-		int offY = (int) (5*Math.cos(alfa));
+		int offY = (int) (5*Math.cos(alfa*80));
 		
 		if (shrine.existSI()) {
-			g.drawImage(arrowUp, x+hudWidth/2-uArrowWidth/2-15-shrineImg.getWidth()/2, 55+offY, null);
-			g.drawImage(arrowDown, x+hudWidth/2-dArrowWidth/2-15-shrineImg.getWidth()/2, hudHeight-offY, null);
-			g.drawImage(sacrefice, x-shrineImg.getWidth()/2, 0, null);
+			g.drawImage(arrowUp, x+hudWidth/2-uArrowWidth/2-15, 55+offY, null);
+			g.drawImage(arrowDown, x+hudWidth/2-dArrowWidth/2-15, hudHeight-offY, null);
+			g.drawImage(sacrefice, x, 0, null);
 			
 			int iconWidth = (int) (iconGear.getWidth()*3);
 			int iconHeight = (int) (iconGear.getHeight()*3);
@@ -296,10 +296,12 @@ public class GodPainter extends AbstractPainter{
 				icon = this.iconGear;
 				break;
 			}
-			g.drawImage(icon, x-shrineImg.getWidth()/2+210, 270, iconWidth, iconHeight, null);
+			g.drawImage(icon, x+210, 270, iconWidth, iconHeight, null);
 			
 		}
-		g.drawImage(shrineImg, x, y-shrineImg.getHeight(), null);
+		int shrineWidth = (int) (shrineImg.getWidth()*1.5f);
+		int shrineHeight = (int) (shrineImg.getHeight()*1.5f);
+		g.drawImage(shrineImg, x, y-shrineHeight, shrineWidth, shrineHeight, null);
 		g.setColor(Color.BLACK);
 		g.fillRect(x, y, 10, 10);
 	}
