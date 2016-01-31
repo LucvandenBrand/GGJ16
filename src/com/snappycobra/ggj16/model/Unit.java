@@ -19,6 +19,10 @@ public class Unit extends GameObject{
 		this.base = base;
 		walkSpeed = 1;
 	}
+	
+	public Unit(Player owner, Base base) {
+		this("harry", Unit.createBody(), owner, base);
+	}
 
 	@Override
 	public void init() {
@@ -26,10 +30,11 @@ public class Unit extends GameObject{
 		
 	}
 	
-	public void createBody() {
+	static public Body createBody() {
 		Body unitBody = new Body();
 		unitBody.shift(new Vector2(0,18));
 		unitBody.addFixture(new Rectangle(10,3));
+		return unitBody;
 	}
 	
 	public boolean moveTo(Body destination) {

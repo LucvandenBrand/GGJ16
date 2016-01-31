@@ -65,7 +65,7 @@ public class Cursor {
 	}
 
 	public GameObject select() {
-		if (selectedUnit != null) {
+		/*if (selectedUnit != null) {
 			for(ResourcePoint rp : worldMap.getResourcePointList()) {
 				if (inResSelection(rp.getBody())) {
 					System.out.println("Resource Selected");
@@ -83,6 +83,12 @@ public class Cursor {
 			if (inUnitSelection(unit.getBody())) {
 				System.out.println("UNIT Selected");
 				return unit;
+			}
+		}*/
+		if (selectedUnit == null) {
+			if (inBaseSelection(owner.getBuildingList().get(0).getBody())) {
+				System.out.println("Base Selected");
+				return owner.getBuildingList().get(0);
 			}
 		}
 		return null;
@@ -109,6 +115,14 @@ public class Cursor {
 		double width = aabb.getWidth();
 		double minX = body.getWorldCenter().x-width/2+11;
 		double maxX = minX+4;
+		return position > minX && position < maxX;
+	}
+	
+	private boolean inBaseSelection(Body body) {
+		AABB aabb = body.createAABB();
+		double width = aabb.getWidth();
+		double minX = body.getWorldCenter().x-width/2+9;
+		double maxX = minX+14;
 		return position > minX && position < maxX;
 	}
 
