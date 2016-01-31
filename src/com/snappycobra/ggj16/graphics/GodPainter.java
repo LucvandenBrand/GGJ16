@@ -275,15 +275,18 @@ public class GodPainter extends AbstractPainter{
 		int offY = (int) (5*Math.cos(alfa*80));
 		
 		if (shrine.existSI()) {
-			g.drawImage(arrowUp, x+hudWidth/2-uArrowWidth/2-15, 55+offY, null);
-			g.drawImage(arrowDown, x+hudWidth/2-dArrowWidth/2-15, hudHeight-offY, null);
+			String selected = shrine.getSacrificeInterface().getSelected();
+			if (selected != "") {
+				g.drawImage(arrowUp, x+hudWidth/2-uArrowWidth/2-15, 55+offY, null);
+				g.drawImage(arrowDown, x+hudWidth/2-dArrowWidth/2-15, hudHeight-offY, null);
+			}
 			g.drawImage(sacrefice, x, 0, null);
 			
 			int iconWidth = (int) (iconGear.getWidth()*3);
 			int iconHeight = (int) (iconGear.getHeight()*3);
 			
 			BufferedImage icon = this.iconCross;
-			switch (shrine.getSacrificeInterface().getSelected()) {
+			switch (selected) {
 			case "Oil":
 				icon = this.iconOil;
 				break;
