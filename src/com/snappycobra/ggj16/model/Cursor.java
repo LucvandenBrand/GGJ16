@@ -20,7 +20,7 @@ public class Cursor {
 		this.mapWidth = mapWidth;
 		this.movingLeft=false;
 		this.movingRight=false;
-		position = mapWidth/2;
+		position =0;// mapWidth/2;
 	}
 	
 	public void click() {
@@ -31,16 +31,24 @@ public class Cursor {
 	}
 	
 	public void doClicked(GameObject go) {
-		System.out.println("You are doing something wrong");
-	}
-	
-	public void doClicked(Unit unit) {
-		selectedUnit = unit;
-	}
-	
-	public void doClicked(ResourcePoint rp) {
-		if (selectedUnit != null) {
-			selectedUnit.switchJob(new Gatherer(selectedUnit, rp));
+		if (go instanceof Unit) {
+			selectedUnit = (Unit) go;
+		}
+		else if (go instanceof ResourcePoint) {
+			if (selectedUnit != null) {
+				//Job newJob = new Gatherer(selectedUnit, (ResourcePoint) go);
+				//selectedUnit.switchJob(newJob);
+				System.out.println("give new job");
+				System.out.println(go);
+				//selectedUnit.setJob(new TestJob((ResourcePoint) go, selectedUnit));
+				selectedUnit.setJob(new Gatherer(selectedUnit, (ResourcePoint) go ));
+				selectedUnit = null;
+			}
+		} else if (go instanceof Shrine) {
+			if (selectedUnit != null) {
+				System.out.print("time to chose");
+				
+			}
 		}
 	}
 	
@@ -57,32 +65,64 @@ public class Cursor {
 	}
 
 	public GameObject select() {
-		for(ResourcePoint rp : worldMap.getResourcePointList()) {
-			if (inSelection(rp.getBody())) {
-				System.out.println("Resource Selected");
-				return rp;
+		if (selectedUnit != null) {
+			for(ResourcePoint rp : worldMap.getResourcePointList()) {
+				if (inResSelection(rp.getBody())) {
+					System.out.println("Resource Selected");
+					return rp;
+				}
+			}
+		}
+		if (selectedUnit != null) {
+			if (inShrineSelection(worldMap.getShrine().getBody())) {
+				System.out.println("Shrine Selected");
+				return worldMap.getShrine();
 			}
 		}
 		for(Unit unit : owner.getUnitList()) {
-			if (inSelection(unit.getBody())) {
+			if (inUnitSelection(unit.getBody())) {
 				System.out.println("UNIT Selected");
 				return unit;
+			}
+		}
+		if (selectedUnit == null) {
+			if (inBaseSelection(owner.getBuildingList().get(0).getBody())) {
+				System.out.println("Base Selected");
+				return owner.getBuildingList().get(0);
 			}
 		}
 		return null;
 	}
 	
-	private boolean inBoundaryBox(Body body) {
-		System.out.println("pos:"+position);
-		System.out.println("minx:"+body.createAABB().getMinX()+ "maxX"+body.createAABB().getMaxX());
-		return position > body.createAABB().getMinX() && position < body.createAABB().getMaxX();
-	}
-	
-	private boolean inSelection(Body body) {
+	private boolean inResSelection(Body body) {
 		AABB aabb = body.createAABB();
 		double width = aabb.getWidth();
 		double minX = body.getWorldCenter().x-width/2+7;
 		double maxX = minX+4;
+		return position > minX && position < maxX;
+	}
+	
+	private boolean inShrineSelection(Body body) {
+		AABB aabb = body.createAABB();
+		double width = aabb.getWidth();
+		double minX = body.getWorldCenter().x-width/2+8;
+		double maxX = minX+7;
+		return position > minX && position < maxX;
+	}
+	
+	private boolean inUnitSelection(Body body) {
+		AABB aabb = body.createAABB();
+		double width = aabb.getWidth();
+		double minX = body.getWorldCenter().x-width/2+11;
+		double maxX = minX+4;
+		return position > minX && position < maxX;
+	}
+	
+	private boolean inBaseSelection(Body body) {
+		AABB aabb = body.createAABB();
+		double width = aabb.getWidth();
+		double minX = body.getWorldCenter().x-width/2+9;
+		double maxX = minX+14;
 		return position > minX && position < maxX;
 	}
 

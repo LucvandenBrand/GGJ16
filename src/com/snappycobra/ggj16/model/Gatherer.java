@@ -5,7 +5,7 @@ import com.snappycobra.motor.graphics.Sprite;
 
 public class Gatherer extends Job {
 	private ResourcePoint gatherAt;
-	private int yield;
+	private double yield;
 	private int maxYield;
 	private int state=3;
 	private Unit owner;
@@ -26,7 +26,7 @@ public class Gatherer extends Job {
 			}
 			break;
 		case 2:
-			if(yield==maxYield){
+			if(yield>=maxYield){
 				state=3;
 			} else {
 				Work();
@@ -43,10 +43,10 @@ public class Gatherer extends Job {
 	
 	public void Work(){
 		System.out.println("working");
-		yield++;
+		yield = yield+0.1;
 	}
 	
 	public void storeResources() {
-		owner.getOwner().addResource(gatherAt.getResource().getResName(), yield);
+		owner.getOwner().addResource(gatherAt.getResource().getResName(), 1);
 	}
 }

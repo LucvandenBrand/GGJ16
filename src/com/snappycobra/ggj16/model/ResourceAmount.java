@@ -9,6 +9,11 @@ public class ResourceAmount {
 		amount = 0;
 	}
 	
+	public ResourceAmount(String resName, int amount) {
+		this.resName = resName;
+		this.amount = amount;
+	}
+	
 	public void addAmount(int amount) {
 		this.amount += amount;
 	}
@@ -29,4 +34,5 @@ public class ResourceAmount {
 	public String getResName() {
 		return resName;
 	}
+	
 }

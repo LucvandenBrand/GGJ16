@@ -21,12 +21,14 @@ public class GameModel extends Game {
 		Map map = factory.loadMap("data/maps/test4.tmx");
 		this.setMap(map);
 		
-		worldMap = new WorldMap(map.getGameObjectsWithProp("resource"));
+		worldMap = new WorldMap(map.getGameObjectsWithProp("resource"), (Shrine) map.getGameObjectsWithProp("shrine").get(0));
 		addPlayers(amountPlayers, map, worldMap);
 		Body unitBody = new Body();
-		unitBody.shift(new Vector2(0,18));
-		unitBody.addFixture(new Rectangle(3,3));
-		Unit unit = new Unit("harry",unitBody,playerList.get(1));
+		unitBody.shift(new Vector2(100,18));
+		/*unitBody.addFixture(new Rectangle(5,1));*/
+		System.out.println((Base) playerList.get(1).getBuildingList().get(0));
+		Unit unit = new Unit("harry",unitBody,playerList.get(1), (Base) playerList.get(1).getBuildingList().get(0));
+		unit.createBody();
 		unit.setJob(new JobLess());
 		playerList.get(1).addUnit(unit);
 		/*unit = new Unit("harry",unitBody,playerList.get(0));
