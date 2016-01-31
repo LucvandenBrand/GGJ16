@@ -20,7 +20,7 @@ public class Cursor {
 		this.mapWidth = mapWidth;
 		this.movingLeft=false;
 		this.movingRight=false;
-		position = mapWidth/2;
+		position =0;// mapWidth/2;
 	}
 	
 	public void click() {
