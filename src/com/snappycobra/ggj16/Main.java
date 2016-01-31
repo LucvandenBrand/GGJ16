@@ -23,7 +23,7 @@ public class Main {
 	public static void main(String[] args){
 		GameModel model = new GameModel(2);
 		GodPainter painter = new GodPainter(model);
-		Window window = new Window(300,300,painter);
+		Window window = new Window(800,600,painter);
 		List<Player> players = model.getPlayerList();
 
 		CursorController controller1 = new ArrowCursorController(players.get(0).getCursor());

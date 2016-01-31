@@ -33,4 +33,8 @@ public class MastermindGame {
 		}
 		return false;
 	}
+	
+	public List<Resource> getCurrentTry() {
+		return currentTry.getResourceList();
+	}
 }

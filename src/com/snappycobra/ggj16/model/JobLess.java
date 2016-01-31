@@ -6,7 +6,7 @@ import com.snappycobra.motor.graphics.Sprite;
 public class JobLess extends Job {
 	
 	public JobLess() {
-		sprite = new Sprite(new Frame("data/images/Workers/Worker_Green.png", 10));
+		sprite = new Sprite(Frame.framesFromTileset("data/images/Creatures/player00_sleep_white.png", 7, 256, 256));
 	}
 	@Override
 	public void update() {

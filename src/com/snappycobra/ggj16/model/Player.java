@@ -19,6 +19,7 @@ public class Player{
 	
 	public Player(int playerNumber, Map map) {
 		fillBuildingList(playerNumber, map);
+		mastermind = new Mastermind();
 	}
 	
 	public void addResource(String resName, int amount) {
@@ -68,5 +69,9 @@ public class Player{
 		if (mastermind.addResource(res)) {
 			System.out.println("Je bent de ownende supah winner.");
 		}
+	}
+	
+	public Mastermind getMastermind() {
+		return this.mastermind;
 	}
 }
