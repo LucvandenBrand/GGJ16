@@ -17,11 +17,13 @@ public class GameModel extends Game {
 	private WorldMap worldMap;
 	private List<Player> playerList = new ArrayList<Player>();
 	private MusicPlayer musicPlayer;
+	private boolean showIntro;
 
 	public GameModel(int amountPlayers) {
 		MapFactory factory = new MapFactory();
 		Map map = factory.loadMap("data/maps/test4.tmx");
 		this.setMap(map);
+		this.showIntro = true;
 		
 		worldMap = new WorldMap(map.getGameObjectsWithProp("resource"), (Shrine) map.getGameObjectsWithProp("shrine").get(0));
 		addPlayers(amountPlayers, map, worldMap);
@@ -70,5 +72,13 @@ public class GameModel extends Game {
 	public List<Player> getPlayerList() {
 		return playerList;
 	}	
+	
+	public void setShowIntro(boolean show) {
+		this.showIntro = show;
+	}
+	
+	public boolean isShowIntro() {
+		return this.showIntro;
+	}
 	
 }
