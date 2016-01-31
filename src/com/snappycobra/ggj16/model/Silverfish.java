@@ -11,7 +11,7 @@ public class Silverfish extends Resource {
 	
 	public Silverfish() {
 		name = "Silverfish";
-		this.sprite = new Sprite(new Frame("data/images/Resources/resource-silver.png", 10));
+		this.sprite = new Sprite(Frame.framesFromTileset("data/images/Resources/zilver_spritesheet.png", 10, 144, 144));
 	}
 	
 	public static String getResName() {

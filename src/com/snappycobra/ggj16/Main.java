@@ -31,9 +31,9 @@ public class Main {
 		window.addKeyListener(controller1);
 		window.addKeyListener(controller2);
 		window.addKeyListener(new WindowCloseController());
-		window.setResizable(true);
-		painter.showFPS(true);
-		window.setTitle("GGJ16");
+		window.setResizable(false);
+		painter.showFPS(false);
+		window.setTitle("SnappyRoba");
 		window.setVisible(true);
 	}
 }

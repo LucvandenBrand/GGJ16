@@ -11,7 +11,8 @@ public class Gear extends Resource {
 	
 	public Gear() {
 		name = "Gear";
-		this.sprite = new Sprite(new Frame("data/images/Resources/resource-gears.png", 10));
+		//this.sprite = new Sprite(new Frame("data/images/Resources/resource-gears.png", 10));
+		this.sprite = new Sprite(Frame.framesFromTileset("data/images/Resources/gears_spritesheet.png", 10, 144, 144));
 	}
 	
 	public static String getResName() {

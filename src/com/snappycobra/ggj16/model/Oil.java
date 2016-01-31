@@ -13,7 +13,8 @@ public class Oil extends Resource {
 	
 	public Oil() {
 		name = "Oil";
-		this.sprite = new Sprite(new Frame("data/images/Resources/resource-oil.png", 10));
+		//this.sprite = new Sprite(new Frame("data/images/Resources/resource-oil.png", 10));
+		this.sprite = new Sprite(Frame.framesFromTileset("data/images/Resources/oil_spritesheet.png", 10, 144, 144));
 	}
 	
 	public static String getResName() {
