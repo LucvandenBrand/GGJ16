@@ -79,7 +79,7 @@ public class Unit extends GameObject{
 	}
 	
 	public void switchJob(Job job) {
-		this.job = new GetNewJob(job, this.job);
+		this.job = new GetNewJob(job.owner, job, this.job);
 	}
 
 	public void setJob(Job job) {

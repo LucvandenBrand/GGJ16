@@ -20,10 +20,10 @@ public class Player{
 	public Player(int playerNumber, Map map) {
 		fillBuildingList(playerNumber, map);
 		mastermind = new Mastermind();
-		resourceAmountList.add(new ResourceAmount("Gear"));
-		resourceAmountList.add(new ResourceAmount("Oil"));
-		resourceAmountList.add(new ResourceAmount("Silver"));
-		resourceAmountList.add(new ResourceAmount("Uranium"));
+		resourceAmountList.add(new ResourceAmount("Gear",5));
+		resourceAmountList.add(new ResourceAmount("Oil",5));
+		resourceAmountList.add(new ResourceAmount("Silver",5));
+		resourceAmountList.add(new ResourceAmount("Uranium",5));
 	}
 	
 	public void addResource(String resName, int amount) {

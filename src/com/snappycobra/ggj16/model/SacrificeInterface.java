@@ -27,8 +27,10 @@ public class SacrificeInterface {
 		String resName = getSelected();
 		if (resName != "") {
 			System.out.println("timeToOffer");
-			if (unit.getOwner().removeResource(resName, 1))	
-			unit.switchJob(new Sacrificer(unit, shrine, Resource.getResource(resName)));
+			if (unit.getOwner().removeResource(resName, 1))	{
+				//unit.switchJob(new Sacrificer(unit, shrine, Resource.getResource(resName)));
+				unit.setJob(new Sacrificer(unit, shrine, Resource.getResource(resName)));
+			}
 		}
 		dismiss();
 	}
