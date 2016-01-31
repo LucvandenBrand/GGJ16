@@ -23,6 +23,7 @@ import com.snappycobra.ggj16.model.Cursor;
 import com.snappycobra.ggj16.model.GameModel;
 import com.snappycobra.ggj16.model.Player;
 import com.snappycobra.ggj16.model.Resource;
+import com.snappycobra.ggj16.model.ResourceAmount;
 import com.snappycobra.ggj16.model.ResourcePoint;
 import com.snappycobra.ggj16.model.Shrine;
 import com.snappycobra.ggj16.model.Unit;
@@ -135,23 +136,23 @@ public class GodPainter extends AbstractPainter{
 	}
 	
 	protected void drawStats(Graphics2D g, Player player, int offY, float scaledY) {
-		
+		List<ResourceAmount> resourceAmounts = player.getResourceAmountList();
 		int sWidth = this.getWidth();
 		int sHeight = this.getHeight();
 		int iconWidth = (int) (iconGear.getWidth()*scaledY*2);
 		int iconHeight = (int) (iconGear.getHeight()*scaledY*2);
 		
 		g.setColor(new Color(0.7f,0,0));
-		this.drawRAlignedString(g, "2", sWidth-iconWidth-(int)(15*scaledY), (int)(offY+17*scaledY), 55*scaledY, UIFont);
+		this.drawRAlignedString(g, ""+resourceAmounts.get(0).getAmount(), sWidth-iconWidth-(int)(15*scaledY), (int)(offY+17*scaledY), 55*scaledY, UIFont);
 		g.drawImage(iconGear, sWidth-iconWidth, offY, iconWidth, iconHeight, null);
 		g.setColor(new Color(1f,0.7f,0.2f));
-		this.drawRAlignedString(g, "8", sWidth-iconWidth-(int)(15*scaledY), (int)(offY+iconHeight+20*scaledY), 55*scaledY, UIFont);
+		this.drawRAlignedString(g, ""+resourceAmounts.get(1).getAmount(), sWidth-iconWidth-(int)(15*scaledY), (int)(offY+iconHeight+20*scaledY), 55*scaledY, UIFont);
 		g.drawImage(iconOil, sWidth-iconWidth, offY+iconHeight, iconWidth, iconHeight, null);
 		g.setColor(new Color(0.2f,0.2f,0.7f));
-		this.drawRAlignedString(g, "9", sWidth-iconWidth-(int)(15*scaledY), (int)(offY+iconHeight*2+20*scaledY), 55*scaledY, UIFont);
+		this.drawRAlignedString(g, ""+resourceAmounts.get(2).getAmount(), sWidth-iconWidth-(int)(15*scaledY), (int)(offY+iconHeight*2+20*scaledY), 55*scaledY, UIFont);
 		g.drawImage(iconSilver, sWidth-iconWidth, offY+iconHeight*2, iconWidth, iconHeight, null);
 		g.setColor(new Color(0.2f,0.6f,0.2f));
-		this.drawRAlignedString(g, "3", sWidth-iconWidth-(int)(15*scaledY), (int)(offY+iconHeight*3+20*scaledY), 55*scaledY, UIFont);
+		this.drawRAlignedString(g, ""+resourceAmounts.get(3).getAmount(), sWidth-iconWidth-(int)(15*scaledY), (int)(offY+iconHeight*3+20*scaledY), 55*scaledY, UIFont);
 		g.drawImage(iconUranium, sWidth-iconWidth, offY+iconHeight*3, iconWidth, iconHeight, null);
 	}
 	
