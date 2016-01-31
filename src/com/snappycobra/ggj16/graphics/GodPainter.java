@@ -44,7 +44,7 @@ public class GodPainter extends AbstractPainter{
 	private BufferedImage parBuffer;
 	private BufferedImage air, path, foreground, scrap1, scrap2, shrineImg, arrowUp, arrowDown, sacrefice;
 	private BufferedImage mindBoard, pastMoveBoard, lampB, lampG, lampR, lampY;
-	private BufferedImage cloud, pointer1, pointer2, iconGear, iconOil, iconUranium, iconSilver;
+	private BufferedImage cloud, pointer1, pointer2, iconGear, iconOil, iconUranium, iconSilver, iconCross;
 	private Sprite godSprite = new Sprite(new Frame("data/images/Creatures/God.png", 10));
 	private Font UIFont;
 	private float alfa;
@@ -76,6 +76,7 @@ public class GodPainter extends AbstractPainter{
 		this.iconOil = ImageManager.getImage("data/images/UI/Icon_Oil.png");
 		this.iconUranium = ImageManager.getImage("data/images/UI/Icon_Uranium.png");
 		this.iconSilver = ImageManager.getImage("data/images/UI/Icon_Silver.png");
+		this.iconCross = ImageManager.getImage("data/images/UI/Icon_Cross.png");
 		
 		this.lampB = ImageManager.getImage("data/images/MasterMind/Lamp_Blue.png");
 		this.lampG = ImageManager.getImage("data/images/MasterMind/Lamp_Green.png");
@@ -281,7 +282,7 @@ public class GodPainter extends AbstractPainter{
 			int iconWidth = (int) (iconGear.getWidth()*3);
 			int iconHeight = (int) (iconGear.getHeight()*3);
 			
-			BufferedImage icon = this.iconOil;
+			BufferedImage icon = this.iconCross;
 			switch (shrine.getSacrificeInterface().getSelected()) {
 			case "Oil":
 				icon = this.iconOil;
