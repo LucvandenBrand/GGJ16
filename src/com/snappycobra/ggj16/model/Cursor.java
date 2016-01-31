@@ -158,4 +158,8 @@ public class Cursor {
 		this.movingRight = movingRight;
 	}
 	
+	public WorldMap getWorldMap() {
+		return this.worldMap;
+	}
+	
 }
