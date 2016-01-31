@@ -16,16 +16,21 @@ import org.dyn4j.dynamics.Body;
 import org.dyn4j.geometry.AABB;
 import org.dyn4j.geometry.Vector2;
 
+import com.snappycobra.ggj16.mastermind.Combination;
 import com.snappycobra.ggj16.mastermind.Mastermind;
+import com.snappycobra.ggj16.mastermind.OldCombination;
 import com.snappycobra.ggj16.model.Base;
 import com.snappycobra.ggj16.model.Building;
 import com.snappycobra.ggj16.model.Cursor;
 import com.snappycobra.ggj16.model.GameModel;
+import com.snappycobra.ggj16.model.Gear;
+import com.snappycobra.ggj16.model.Oil;
 import com.snappycobra.ggj16.model.Player;
 import com.snappycobra.ggj16.model.Resource;
 import com.snappycobra.ggj16.model.ResourceAmount;
 import com.snappycobra.ggj16.model.ResourcePoint;
 import com.snappycobra.ggj16.model.Shrine;
+import com.snappycobra.ggj16.model.Silverfish;
 import com.snappycobra.ggj16.model.Unit;
 import com.snappycobra.motor.graphics.AbstractPainter;
 import com.snappycobra.motor.graphics.Frame;
@@ -43,7 +48,7 @@ public class GodPainter extends AbstractPainter{
 	private BufferedImage mapBuffer;
 	private BufferedImage parBuffer;
 	private BufferedImage air, path, foreground, scrap1, scrap2, shrineImg, arrowUp, arrowDown, sacrefice;
-	private BufferedImage mindBoard, pastMoveBoard, lampB, lampG, lampR, lampY;
+	private BufferedImage mindBoard, pastMoveBoard, lampB, lampG, lampR, lampY, selArrow;
 	private BufferedImage cloud, pointer1, pointer2, iconGear, iconOil, iconUranium, iconSilver, iconCross;
 	private Sprite godSprite = new Sprite(new Frame("data/images/Creatures/God.png", 10));
 	private Font UIFont;
@@ -77,6 +82,7 @@ public class GodPainter extends AbstractPainter{
 		this.iconUranium = ImageManager.getImage("data/images/UI/Icon_Uranium.png");
 		this.iconSilver = ImageManager.getImage("data/images/UI/Icon_Silver.png");
 		this.iconCross = ImageManager.getImage("data/images/UI/Icon_Cross.png");
+		this.selArrow = ImageManager.getImage("data/images/UI/Pijl_Heel.png");
 		
 		this.lampB = ImageManager.getImage("data/images/MasterMind/Lamp_Blue.png");
 		this.lampG = ImageManager.getImage("data/images/MasterMind/Lamp_Green.png");
@@ -221,16 +227,91 @@ public class GodPainter extends AbstractPainter{
 			int lampH = (int) (lamp.getHeight()*scaledY);
 			g.drawImage(lamp, lampLocX, lampLocY+offY, lampW, lampH, null);
 		}
-		this.drawMasterMindHistory(g, player, offY+height/2+(int)(100*scaledY), scaledY);
+		int j=0;
+		for (OldCombination oldTry : mastermind.getMastermindGame().getOldTries()) {	
+			this.drawMasterMindHistory(g, oldTry, offY+height/2+((int)(100*scaledY)+j*(int)(pastMoveBoard.getHeight()*scaledY)), scaledY);	
+			j++;
+			if (j>3) {
+				break;
+			}
+		}
+		/*
+		Combination combo = new Combination(3);
+		combo.addResource(new Oil());
+		combo.addResource(new Oil());
+		combo.addResource(new Gear());
+		//combo.addResource(new Gear());
+		//combo.addResource(new Silverfish());
+		this.drawMasterMindHistory(g, new OldCombination(combo, 1, 2), offY+height/2+((int)(100*scaledY)+j*(int)(pastMoveBoard.getHeight()*scaledY)), scaledY);
+		*/
 	}
 	
-	protected void drawMasterMindHistory(Graphics2D g, Player player, int offY, float scaledY) {
-		Mastermind mastermind = player.getMastermind();
-		int level = mastermind.getLength();
+	protected void drawMasterMindHistory(Graphics2D g, OldCombination oldTry, int offY, float scaledY) {
+		int level = oldTry.getSize();
 		int width = (int) (pastMoveBoard.getWidth()*scaledY);
 		int height = (int) (pastMoveBoard.getHeight()*scaledY);
 		//System.o
 		g.drawImage(pastMoveBoard, (int)(45*scaledY), offY, width, height, null);
+		int i=0;
+		int stepX=(int) (35*scaledY);
+		int shiftY=(int) (24*scaledY);
+		int shiftX=(int) (130*scaledY);
+		int r = (int)(20*scaledY);
+		Color color = Color.WHITE;
+		for (Resource res : oldTry.getResourceList()) {
+			switch (res.getRealName()) {
+			case "Oil": 
+				color = new Color(1f,0.7f,0.2f);
+				break;
+			case "Gear":
+				color = new Color(0.7f,0,0);
+				break;
+			case "Uranium":
+				color = new Color(0.2f,0.6f,0.2f);
+				break;
+			case "Silverfish":
+				color = new Color(0.2f,0.2f,0.7f);
+				break;
+			}
+			g.setColor(color);
+			g.fillOval(shiftX+i*stepX, offY+shiftY, r, r);
+			i++;
+		}
+		shiftY=(int) (20*scaledY);
+		shiftX=(int) (125*scaledY);
+		r = (int)(32*scaledY);
+		for (;i<5;i++) {
+			color = new Color(0.285f, 0.273f, 0.265f);
+			g.setColor(color);
+			g.fillOval(shiftX+i*stepX, offY+shiftY, r, r);
+		}
+		
+		int posCol = oldTry.getPoscol();
+		int col = oldTry.getCol();
+		stepX =(int) (20*scaledY);
+		int stepY =(int) (25*scaledY);
+		shiftY=(int) (10*scaledY);
+		shiftX=(int) (325*scaledY);
+		r = (int)(15*scaledY);
+		int z=0;
+		for (int j=0; j<5; j++) {
+			color = new Color(1,1,1,0);
+			if (posCol > 0) {
+				color = Color.WHITE;
+				posCol--;
+			} else if (col > 0) {
+				color = Color.BLACK;
+				col--;
+			}
+			g.setColor(color);
+			if (j>2) {
+				z=1;
+				shiftY=(int) (2*scaledY);
+				shiftX=(int) (276*scaledY);
+			}
+			g.fillOval(shiftX+j*stepX, offY+shiftY+z*stepY, r, r);
+		}
+		
 	}
 	
 	protected void drawResources(Graphics2D g) {
@@ -249,6 +330,7 @@ public class GodPainter extends AbstractPainter{
 	protected void drawUnits(Graphics2D g) {
 		Map map = this.getMap();
 		for (Player player : players) {
+			Unit selUnit = player.getCursor().getSelectedUnit();
 			for (Unit unit : player.getUnitList()) {
 				Sprite sprite = unit.getJob().getSprite();
 				int x = getX(unit.getBody());
@@ -256,7 +338,18 @@ public class GodPainter extends AbstractPainter{
 
 				int width = sprite.getImage().getWidth();
 				int height = sprite.getImage().getHeight();
-				this.drawSprite(g, sprite, x, y-height);
+				if (unit.isFacingLeft()) {
+					this.drawSprite(g, sprite, x, y-height);
+				} else {
+					this.drawSpriteFlipped(g, sprite, x, y-height);
+				}
+				
+				if (unit == selUnit) {
+					int arrWidth = selArrow.getWidth()*2;
+					int arrHeight = selArrow.getHeight()*2;
+					int offY = (int) (5*Math.cos(alfa*80));
+					g.drawImage(selArrow, x+width/2-arrWidth/2, y-height-120-offY, arrWidth, arrHeight, null);
+				}
 				g.setColor(Color.BLACK);
 				g.fillRect(x, y, 10, 10);
 			}
@@ -275,15 +368,18 @@ public class GodPainter extends AbstractPainter{
 		int offY = (int) (5*Math.cos(alfa*80));
 		
 		if (shrine.existSI()) {
-			g.drawImage(arrowUp, x+hudWidth/2-uArrowWidth/2-15, 55+offY, null);
-			g.drawImage(arrowDown, x+hudWidth/2-dArrowWidth/2-15, hudHeight-offY, null);
+			String selected = shrine.getSacrificeInterface().getSelected();
+			if (selected != "") {
+				g.drawImage(arrowUp, x+hudWidth/2-uArrowWidth/2-15, 55+offY, null);
+				g.drawImage(arrowDown, x+hudWidth/2-dArrowWidth/2-15, hudHeight-offY, null);
+			}
 			g.drawImage(sacrefice, x, 0, null);
 			
 			int iconWidth = (int) (iconGear.getWidth()*3);
 			int iconHeight = (int) (iconGear.getHeight()*3);
 			
 			BufferedImage icon = this.iconCross;
-			switch (shrine.getSacrificeInterface().getSelected()) {
+			switch (selected) {
 			case "Oil":
 				icon = this.iconOil;
 				break;

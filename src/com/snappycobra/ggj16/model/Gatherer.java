@@ -55,7 +55,7 @@ public class Gatherer extends Job {
 	
 	public void storeResources() {
 		System.out.println("Is a:"+gatherAt.getResource().getRealName());
-		owner.getOwner().addResource(gatherAt.getResource().getRealName(), 1);
+		owner.getOwner().addResource(gatherAt.getResource().getRealName(), (int) yield);
 		yield = 0;
 	}
 }
