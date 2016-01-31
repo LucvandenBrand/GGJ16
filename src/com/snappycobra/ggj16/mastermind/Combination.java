@@ -19,11 +19,8 @@ public class Combination {
 	}
 	
 	public boolean Compare(Combination solution){
-		System.out.println("start compare");
 		for (int i=0; i<length; i++) {
-			System.out.println(resourceList.get(i).getRealName()+ ":" + solution.getResourceList().get(i));
 			if (!resourceList.get(i).getRealName().equals(solution.getResourceList().get(i).getRealName())){
-				System.out.println("start compare");
 				return false;
 			}
 		}

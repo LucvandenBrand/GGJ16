@@ -12,7 +12,6 @@ public class GetNewJob extends Job {
 	@Override
 	public void update() {
 		owner.getBase();
-		System.out.println("Waar ik heen moet"+owner.getBase().getBody());
 		if(owner.moveTo(owner.getBase().getBody())) {
 			owner.setJob(nextJob);
 		}

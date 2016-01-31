@@ -28,7 +28,6 @@ public class GameModel extends Game {
 		Body unitBody = new Body();
 		unitBody.shift(new Vector2(100,27));
 		/*unitBody.addFixture(new Rectangle(5,1));*/
-		System.out.println((Base) playerList.get(1).getBuildingList().get(0));
 		Unit unit = new Unit("harry",unitBody,playerList.get(1), (Base) playerList.get(1).getBuildingList().get(0));
 		unit.createBody();
 		unit.setJob(new JobLess());
