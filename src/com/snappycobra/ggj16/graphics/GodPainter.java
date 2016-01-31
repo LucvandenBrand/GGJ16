@@ -272,9 +272,33 @@ public class GodPainter extends AbstractPainter{
 		int hudWidth = sacrefice.getWidth();
 		int hudHeight = sacrefice.getHeight();
 		int offY = (int) (5*Math.cos(alfa));
-		//g.drawImage(arrowUp, x+hudWidth/2-uArrowWidth/2-15-shrineImg.getWidth()/2, 55+offY, null);
-		//g.drawImage(arrowDown, x+hudWidth/2-dArrowWidth/2-15-shrineImg.getWidth()/2, hudHeight-offY, null);
-		//g.drawImage(sacrefice, x-shrineImg.getWidth()/2, 0, null);
+		
+		if (shrine.existSI()) {
+			g.drawImage(arrowUp, x+hudWidth/2-uArrowWidth/2-15-shrineImg.getWidth()/2, 55+offY, null);
+			g.drawImage(arrowDown, x+hudWidth/2-dArrowWidth/2-15-shrineImg.getWidth()/2, hudHeight-offY, null);
+			g.drawImage(sacrefice, x-shrineImg.getWidth()/2, 0, null);
+			
+			int iconWidth = (int) (iconGear.getWidth());
+			int iconHeight = (int) (iconGear.getHeight());
+			
+			BufferedImage icon = this.iconOil;
+			switch (shrine.getSacrificeInterface().getSelected()) {
+			case "Oil":
+				icon = this.iconOil;
+				break;
+			case "Silver":
+				icon = this.iconSilver;
+				break;
+			case "Uranium":
+				icon = this.iconUranium;
+				break;
+			case "Gear":
+				icon = this.iconGear;
+				break;
+			}
+			g.drawImage(icon, x-shrineImg.getWidth()/2, 0, iconWidth, iconHeight, null);
+			
+		}
 		g.drawImage(shrineImg, x, y-shrineImg.getHeight(), null);
 		g.setColor(Color.BLACK);
 		g.fillRect(x, y, 10, 10);

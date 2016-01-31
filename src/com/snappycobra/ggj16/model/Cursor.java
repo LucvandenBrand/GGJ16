@@ -46,8 +46,8 @@ public class Cursor {
 			}
 		} else if (go instanceof Shrine) {
 			if (selectedUnit != null) {
-				System.out.print("time to chose");
-				
+				Shrine shrine = (Shrine) go;
+				shrine.choseOffer(owner, selectedUnit);
 			}
 		}
 	}

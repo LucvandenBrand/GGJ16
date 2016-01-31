@@ -16,7 +16,11 @@ public class SacrificeInterface {
 	}
 	
 	public String getSelected() {
-		return possibleResourceList.get(selected);
+		String selectedRes = null;
+		if (possibleResourceList.size() > 0) {
+			selectedRes = possibleResourceList.get(selected);
+		}
+		return selectedRes;
 	}
 	
 	public void confirm() {
