@@ -13,7 +13,7 @@ public class Gatherer extends Job {
 	public Gatherer(Unit owner, ResourcePoint gatherAt) {
 		this.owner = owner;
 		this.gatherAt = gatherAt;
-		this.sprite = new Sprite(new Frame("data/images/Workers/Worker_Blue.png", 10));
+		sprite = new Sprite(Frame.framesFromTileset("data/images/Creatures/player00_white_walk.png", 7, 256, 256));
 		yield = 0;
 		maxYield = 1;
 	}

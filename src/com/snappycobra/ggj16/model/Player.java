@@ -19,6 +19,7 @@ public class Player{
 	
 	public Player(int playerNumber, Map map) {
 		fillBuildingList(playerNumber, map);
+		mastermind = new Mastermind();
 	}
 	
 	public void addResource(String resName, int amount) {
@@ -81,5 +82,9 @@ public class Player{
 	
 	public List<ResourceAmount> getResourceAmountList() {
 		return resourceAmountList;
+	}
+
+	public Mastermind getMastermind() {
+		return this.mastermind;
 	}
 }

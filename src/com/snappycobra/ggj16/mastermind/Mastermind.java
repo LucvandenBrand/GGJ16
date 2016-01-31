@@ -1,5 +1,7 @@
 package com.snappycobra.ggj16.mastermind;
 
+import java.util.List;
+
 import com.snappycobra.ggj16.model.Resource;
 
 public class Mastermind {
@@ -8,6 +10,7 @@ public class Mastermind {
 	
 	public Mastermind() {
 		length = 1;
+		mastermindGame = new MastermindGame(length);
 	}
 	
 	public boolean addResource(Resource res) {
@@ -21,7 +24,12 @@ public class Mastermind {
 		return false;
 	}
 	
-	public int getLength(int length){
+	public int getLength(){
 		return length;
 	}
+	
+	public List<Resource> getCurrentTry() {
+		return mastermindGame.getCurrentTry();
+	}
+	
 }
