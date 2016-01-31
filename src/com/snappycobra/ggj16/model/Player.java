@@ -16,9 +16,11 @@ public class Player{
 	private List<ResourceAmount> resourceAmountList = new ArrayList<ResourceAmount>();
 	private Cursor cursor;
 	private Mastermind mastermind;
+	int playerNumber;
 	
 	public Player(int playerNumber, Map map) {
 		fillBuildingList(playerNumber, map);
+		this.playerNumber = playerNumber;
 		mastermind = new Mastermind();
 		resourceAmountList.add(new ResourceAmount("Gear",5));
 		resourceAmountList.add(new ResourceAmount("Oil",5));

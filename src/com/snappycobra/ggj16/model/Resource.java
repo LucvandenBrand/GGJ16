@@ -43,4 +43,8 @@ public abstract class Resource{
 	public Sprite getSprite() {
 		return this.sprite;
 	}
+	
+	public abstract String getWorkSprite();
+	
+	public abstract String getWalkSprite();
 }
