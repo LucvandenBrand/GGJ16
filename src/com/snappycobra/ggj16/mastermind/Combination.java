@@ -32,13 +32,14 @@ public class Combination {
 	
 	public List<Integer> checkInSolution(Combination solution){
 		List<Resource> testSolution = copy(solution.getResourceList());
+		List<Resource> testResourceList = copy(resourceList);
 		List<Integer> checkInSolution= new ArrayList<>();
 		int posCol = 0;
 		int col = 0;
 		for(int i=0; i<length; i++){
-			if(testSolution.get(i).getResName().equals(resourceList.get(i))){
+			if(testSolution.get(i).getRealName().equals(testResourceList.get(i).getRealName())){
 				testSolution.set(i, null);
-				resourceList.set(i, null);
+				testResourceList.set(i, null);
 				posCol++;
 			}
 		}
@@ -46,8 +47,8 @@ public class Combination {
 		
 		for(int i=0; i<length; i++){
 			for(int j=0; j<length; j++){
-				if(resourceList != null && testSolution != null){
-					if(testSolution.get(i).getResName().equals(resourceList.get(j))){
+				if(testSolution.get(i) != null && testResourceList.get(j) != null){
+					if(testSolution.get(i).getRealName().equals(testResourceList.get(j).getRealName())){
 						testSolution.set(i, null);
 						col++;
 						break;

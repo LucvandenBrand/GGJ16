@@ -206,7 +206,7 @@ public class GodPainter extends AbstractPainter{
 				y=125;
 				break;
 			}
-			switch (currentTry.get(i).getResName()) {
+			switch (currentTry.get(i).getRealName()) {
 			case "Oil":
 				lamp = lampY;
 				break;
@@ -478,7 +478,13 @@ public class GodPainter extends AbstractPainter{
 		int width = godSprite.getImage().getWidth();
 		int height = godSprite.getImage().getHeight();
 		int breatheY = (int) (20*Math.cos(alfa*10));
-		this.drawSprite(g, godSprite, mapWidth/2-width/2+80, 280-breatheY, width, height+breatheY);
+		Player p1 = players.get(0);
+		Player p2 = players.get(1);
+		int len1 = p1.getMastermind().getLength();
+		int len2 = p2.getMastermind().getLength();
+		
+		int shiftX = (len2-len1)*100;
+		this.drawSprite(g, godSprite, mapWidth/2-width/2+80-shiftX, 280-breatheY, width, height+breatheY);
 	}
 	
 	protected void drawTiled(Graphics2D g, BufferedImage image, int height) {

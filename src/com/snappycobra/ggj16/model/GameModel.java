@@ -33,6 +33,12 @@ public class GameModel extends Game {
 		unit.createBody();
 		unit.setJob(new JobLess());
 		playerList.get(1).addUnit(unit);
+		unitBody = new Body();
+		Unit unit2 = new Unit("harry",unitBody,playerList.get(0), (Base) playerList.get(0).getBuildingList().get(0));
+		unit2.createBody();
+		unitBody.shift(new Vector2(108,18));
+		unit2.setJob(new JobLess());
+		playerList.get(0).addUnit(unit2);
 		/*unit = new Unit("harry",unitBody,playerList.get(0));
 		unit.addJob(new JobLess());
 		playerList.get(0).addUnit(unit);
