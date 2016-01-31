@@ -48,7 +48,7 @@ public class GodPainter extends AbstractPainter{
 	private BufferedImage mapBuffer;
 	private BufferedImage parBuffer;
 	private BufferedImage air, path, foreground, scrap1, scrap2, shrineImg, arrowUp, arrowDown, sacrefice;
-	private BufferedImage mindBoard, pastMoveBoard, lampB, lampG, lampR, lampY;
+	private BufferedImage mindBoard, pastMoveBoard, lampB, lampG, lampR, lampY, selArrow;
 	private BufferedImage cloud, pointer1, pointer2, iconGear, iconOil, iconUranium, iconSilver, iconCross;
 	private Sprite godSprite = new Sprite(new Frame("data/images/Creatures/God.png", 10));
 	private Font UIFont;
@@ -82,6 +82,7 @@ public class GodPainter extends AbstractPainter{
 		this.iconUranium = ImageManager.getImage("data/images/UI/Icon_Uranium.png");
 		this.iconSilver = ImageManager.getImage("data/images/UI/Icon_Silver.png");
 		this.iconCross = ImageManager.getImage("data/images/UI/Icon_Cross.png");
+		this.selArrow = ImageManager.getImage("data/images/UI/Pijl_Heel.png");
 		
 		this.lampB = ImageManager.getImage("data/images/MasterMind/Lamp_Blue.png");
 		this.lampG = ImageManager.getImage("data/images/MasterMind/Lamp_Green.png");
@@ -329,6 +330,7 @@ public class GodPainter extends AbstractPainter{
 	protected void drawUnits(Graphics2D g) {
 		Map map = this.getMap();
 		for (Player player : players) {
+			Unit selUnit = player.getCursor().getSelectedUnit();
 			for (Unit unit : player.getUnitList()) {
 				Sprite sprite = unit.getJob().getSprite();
 				int x = getX(unit.getBody());
@@ -336,7 +338,18 @@ public class GodPainter extends AbstractPainter{
 
 				int width = sprite.getImage().getWidth();
 				int height = sprite.getImage().getHeight();
-				this.drawSprite(g, sprite, x, y-height);
+				if (unit.isFacingLeft()) {
+					this.drawSprite(g, sprite, x, y-height);
+				} else {
+					this.drawSpriteFlipped(g, sprite, x, y-height);
+				}
+				
+				if (unit == selUnit) {
+					int arrWidth = selArrow.getWidth()*2;
+					int arrHeight = selArrow.getHeight()*2;
+					int offY = (int) (5*Math.cos(alfa*80));
+					g.drawImage(selArrow, x+width/2-arrWidth/2, y-height-120-offY, arrWidth, arrHeight, null);
+				}
 				g.setColor(Color.BLACK);
 				g.fillRect(x, y, 10, 10);
 			}
