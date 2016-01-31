@@ -25,6 +25,7 @@ public class SacrificeInterface {
 	
 	public void confirm() {
 		String resName = possibleResourceList.get(selected);
+		System.out.println("timeToOffer");
 		if (unit.getOwner().removeResource(resName, 1))
 		unit.switchJob(new Sacrificer(unit, shrine, Resource.getResource(resName)));
 		dismiss();

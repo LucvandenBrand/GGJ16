@@ -278,8 +278,8 @@ public class GodPainter extends AbstractPainter{
 			g.drawImage(arrowDown, x+hudWidth/2-dArrowWidth/2-15-shrineImg.getWidth()/2, hudHeight-offY, null);
 			g.drawImage(sacrefice, x-shrineImg.getWidth()/2, 0, null);
 			
-			int iconWidth = (int) (iconGear.getWidth());
-			int iconHeight = (int) (iconGear.getHeight());
+			int iconWidth = (int) (iconGear.getWidth()*3);
+			int iconHeight = (int) (iconGear.getHeight()*3);
 			
 			BufferedImage icon = this.iconOil;
 			switch (shrine.getSacrificeInterface().getSelected()) {
@@ -296,7 +296,7 @@ public class GodPainter extends AbstractPainter{
 				icon = this.iconGear;
 				break;
 			}
-			g.drawImage(icon, x-shrineImg.getWidth()/2, 0, iconWidth, iconHeight, null);
+			g.drawImage(icon, x-shrineImg.getWidth()/2+210, 270, iconWidth, iconHeight, null);
 			
 		}
 		g.drawImage(shrineImg, x, y-shrineImg.getHeight(), null);
