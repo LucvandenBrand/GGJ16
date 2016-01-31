@@ -40,7 +40,6 @@ public class Unit extends GameObject{
 	public boolean moveTo(Body destination) {
 		double ownX = this.getBody().getWorldCenter().x;
 		double desX = destination.getWorldCenter().x;
-		System.out.println("current x:"+ ownX+" destination x:" + desX);
 		double direction = desX-ownX;
 		if (Math.abs(direction)<=walkSpeed) {
 			this.getBody().translate(direction,0);
