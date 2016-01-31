@@ -11,12 +11,13 @@ public class Unit extends GameObject{
 	private double walkSpeed;
 	private Base base;
 	private Player owner;
-	private boolean switching;
+	private boolean switching, facingLeft;
 	
 	public Unit(String name, Body body, Player owner, Base base) {
 		super(name, body);
 		this.owner = owner;
 		this.base = base;
+		this.facingLeft = true;
 		walkSpeed = 1;
 	}
 	
@@ -46,8 +47,10 @@ public class Unit extends GameObject{
 			return true;
 		}
 		if (direction > 0) {
+			this.facingLeft = false;
 			this.getBody().translate(walkSpeed,0);
 		} else {
+			this.facingLeft = true;
 			this.getBody().translate(-walkSpeed,0);
 		}
 		return false;
@@ -81,6 +84,10 @@ public class Unit extends GameObject{
 
 	public void setJob(Job job) {
 		this.job = job;
+	}
+	
+	public boolean isFacingLeft() {
+		return this.facingLeft;
 	}
 	
 }

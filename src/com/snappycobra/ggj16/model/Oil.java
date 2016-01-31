@@ -8,6 +8,8 @@ import com.snappycobra.motor.graphics.Sprite;
 public class Oil extends Resource {
 	
 	String sound = "data/sounds/fx/oil.wav";
+	String walkSprite = "data/images/creatures/player_walk_yellow_";
+	String workSprite = "data/images/creatures/player_work_yellow_";
 	
 	public Oil() {
 		name = "Oil";
@@ -20,5 +22,13 @@ public class Oil extends Resource {
 	
 	public String getSound(){
 		return sound;
+	}
+	
+	public String getWalkSprite(){
+		return walkSprite;
+	}
+	
+	public String getWorkSprite(){
+		return walkSprite;
 	}
 }

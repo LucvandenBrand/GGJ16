@@ -165,4 +165,8 @@ public class Cursor {
 		return this.worldMap;
 	}
 	
+	public Unit getSelectedUnit() {
+		return this.selectedUnit;
+	}
+	
 }

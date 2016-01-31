@@ -9,11 +9,15 @@ public class Gatherer extends Job {
 	private int maxYield;
 	private int state=3;
 	private Unit owner;
+	private Sprite spriteWalk;
+	private Sprite spriteWork;
 	
 	public Gatherer(Unit owner, ResourcePoint gatherAt) {
 		this.owner = owner;
 		this.gatherAt = gatherAt;
-		sprite = new Sprite(Frame.framesFromTileset("data/images/Creatures/player00_white_walk.png", 7, 256, 256));
+		spriteWalk = SelectGoodSprite(gatherAt.getResource().getWalkSprite(), owner);
+		spriteWork = SelectGoodSprite(gatherAt.getResource().getWorkSprite(), owner);
+		sprite = spriteWalk;
 		yield = 0;
 		maxYield = 1;
 	}
@@ -23,11 +27,14 @@ public class Gatherer extends Job {
 		case 1:
 			if(owner.moveTo(gatherAt.getBody())) {
 				state = 2;
+				sprite = spriteWork;
 			}
 			break;
 		case 2:
+			
 			if(yield>=maxYield){
 				state=3;
+				sprite = spriteWalk;
 			} else {
 				Work();
 			}
