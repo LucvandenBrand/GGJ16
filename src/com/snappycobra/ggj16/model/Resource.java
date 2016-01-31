@@ -33,6 +33,9 @@ public abstract class Resource{
 		return "MAG NIET";
 	}
 	
+
+	public abstract String getSound();
+
 	public String getRealName(){
 		return name;
 	}

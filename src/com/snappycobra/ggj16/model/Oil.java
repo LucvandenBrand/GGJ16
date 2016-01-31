@@ -7,6 +7,8 @@ import com.snappycobra.motor.graphics.Sprite;
 
 public class Oil extends Resource {
 	
+	String sound = "data/sounds/fx/oil.wav";
+	
 	public Oil() {
 		name = "Oil";
 		this.sprite = new Sprite(new Frame("data/images/Resources/resource-oil.png", 10));
@@ -14,5 +16,9 @@ public class Oil extends Resource {
 	
 	public static String getResName() {
 		return "Oil";
+	}
+	
+	public String getSound(){
+		return sound;
 	}
 }
