@@ -6,8 +6,8 @@ import com.snappycobra.motor.graphics.Sprite;
 public class Uranium extends Resource {
 	
 	String sound = "data/sounds/fx/uranium.wav";
-	String walkSprite = "data/images/creatures/player_walk_green_";
-	String workSprite = "data/images/creatures/player_work_green_";
+	String walkSprite = "data/images/Creatures/player_walk_green_";
+	String workSprite = "data/images/Creatures/player_work_green_";
 	
 	public Uranium() {
 		name = "Uranium";

@@ -114,15 +114,16 @@ public class Cursor {
 		AABB aabb = body.createAABB();
 		double width = aabb.getWidth();
 		double minX = body.getWorldCenter().x-width/2+8;
-		double maxX = minX+7;
+		double maxX = minX+15;
+		System.out.println(minX +  "  " +maxX);
 		return position > minX && position < maxX;
 	}
 	
 	private boolean inUnitSelection(Body body) {
 		AABB aabb = body.createAABB();
 		double width = aabb.getWidth();
-		double minX = body.getWorldCenter().x-width/2+11;
-		double maxX = minX+4;
+		double minX = body.getWorldCenter().x-width/2+9;
+		double maxX = minX+5;
 		return position > minX && position < maxX;
 	}
 	

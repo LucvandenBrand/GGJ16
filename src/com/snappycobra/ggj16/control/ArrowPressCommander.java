@@ -51,5 +51,29 @@ public class ArrowPressCommander extends CursorCommander{
 				}
 			}
 		});
+		
+		this.addCommand(KeyEvent.VK_UP, new AbstractAction() {
+			private static final long serialVersionUID = 331430491826847158L;
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				WorldMap worldMap = getCursor().getWorldMap();
+				Shrine shrine = worldMap.getShrine();
+				if (shrine.existSI()) {
+					shrine.getSacrificeInterface().up();
+				}
+			}
+		});
+		
+		this.addCommand(KeyEvent.VK_DOWN, new AbstractAction() {
+			private static final long serialVersionUID = 331430491826847158L;
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				WorldMap worldMap = getCursor().getWorldMap();
+				Shrine shrine = worldMap.getShrine();
+				if (shrine.existSI()) {
+					shrine.getSacrificeInterface().down();
+				}
+			}
+		});
 	}
 }
