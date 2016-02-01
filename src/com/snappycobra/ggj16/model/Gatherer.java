@@ -27,7 +27,7 @@ public class Gatherer extends Job {
 		case 1:
 			if(owner.moveTo(gatherAt.getBody())) {
 				state = 2;
-				sprite = spriteWork;
+				sprite = spriteWalk;
 			}
 			break;
 		case 2:
@@ -37,6 +37,7 @@ public class Gatherer extends Job {
 				sprite = spriteWalk;
 			} else {
 				Work();
+				sprite = spriteWork;
 			}
 			break;
 		case 3:

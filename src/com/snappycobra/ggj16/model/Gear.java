@@ -28,6 +28,6 @@ public class Gear extends Resource {
 	}
 	
 	public String getWorkSprite(){
-		return walkSprite;
+		return workSprite;
 	}
 }

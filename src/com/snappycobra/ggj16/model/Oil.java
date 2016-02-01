@@ -9,7 +9,7 @@ public class Oil extends Resource {
 	
 	String sound = "data/sounds/fx/oil.wav";
 	String walkSprite = "data/images/Creatures/player_walk_yellow_";
-	String workSprite = "data/images/Creatures/player_work_yellow_";
+	String workSprite = "data/images/Creatures/player_suck_yellow_";
 	
 	public Oil() {
 		name = "Oil";
@@ -30,6 +30,6 @@ public class Oil extends Resource {
 	}
 	
 	public String getWorkSprite(){
-		return walkSprite;
+		return workSprite;
 	}
 }

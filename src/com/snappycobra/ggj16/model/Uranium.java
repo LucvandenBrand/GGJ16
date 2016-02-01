@@ -7,7 +7,7 @@ public class Uranium extends Resource {
 	
 	String sound = "data/sounds/fx/uranium.wav";
 	String walkSprite = "data/images/Creatures/player_walk_green_";
-	String workSprite = "data/images/Creatures/player_work_green_";
+	String workSprite = "data/images/Creatures/player_fly_green_";
 	
 	public Uranium() {
 		name = "Uranium";
@@ -27,6 +27,6 @@ public class Uranium extends Resource {
 	}
 	
 	public String getWorkSprite(){
-		return walkSprite;
+		return workSprite;
 	}
 }
