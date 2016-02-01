@@ -120,7 +120,7 @@ public class GodPainter extends AbstractPainter{
 		for (Player player : players) {
 			Cursor cursor = player.getCursor();
 			int posX = (int) (getMap().getWidth()*scaledY-cursor.getPosition()*getMap().getTileWidth()*scaledY);
-			//System.out.println(posX);+
+			
 			this.drawTiled(g, air, i*(sHeight/numPlayers), scaledY);
 			//g.drawImage(air, 0, i*(sHeight/numPlayers), (int)(air.getWidth()*scaledY), (int)(air.getHeight()*scaledY), null);
 			//g.drawImage(air, (int)(air.getWidth()*scaledY), i*(sHeight/numPlayers), (int)(air.getWidth()*scaledY), (int)(air.getHeight()*scaledY), null);
@@ -250,7 +250,6 @@ public class GodPainter extends AbstractPainter{
 		int level = oldTry.getSize();
 		int width = (int) (pastMoveBoard.getWidth()*scaledY);
 		int height = (int) (pastMoveBoard.getHeight()*scaledY);
-		//System.o
 		g.drawImage(pastMoveBoard, (int)(45*scaledY), offY, width, height, null);
 		int i=0;
 		int stepX=(int) (35*scaledY);
@@ -428,9 +427,9 @@ public class GodPainter extends AbstractPainter{
 				int x = getX(building.getBody());
 				int y = getY(building.getBody());
 				Sprite sprite = building.getSprite();
-				int width = sprite.getImage().getWidth();
-				int height = sprite.getImage().getHeight();
-				this.drawSprite(g,sprite, x, y-height);
+				int width = sprite.getImage().getWidth()*2;
+				int height = sprite.getImage().getHeight()*2;
+				this.drawSprite(g,sprite, x, y-height, width, height);
 			}
 		}
 	}

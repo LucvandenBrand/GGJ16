@@ -40,8 +40,6 @@ public class Cursor {
 			if (selectedUnit != null) {
 				//Job newJob = new Gatherer(selectedUnit, (ResourcePoint) go);
 				//selectedUnit.switchJob(newJob);
-				System.out.println("give new job");
-				System.out.println(((ResourcePoint) go).getResource().getSound());
 				musicPlayer.playSound(((ResourcePoint) go).getResource().getSound());
 				//selectedUnit.setJob(new TestJob((ResourcePoint) go, selectedUnit));
 				selectedUnit.setJob(new Gatherer(selectedUnit, (ResourcePoint) go ));
@@ -76,26 +74,22 @@ public class Cursor {
 		if (selectedUnit != null) {
 			for(ResourcePoint rp : worldMap.getResourcePointList()) {
 				if (inResSelection(rp.getBody())) {
-					System.out.println("Resource Selected");
 					return rp;
 				}
 			}
 		}
 		if (selectedUnit != null) {
 			if (inShrineSelection(worldMap.getShrine().getBody())) {
-				System.out.println("Shrine Selected");
 				return worldMap.getShrine();
 			}
 		}
 		for(Unit unit : owner.getUnitList()) {
 			if (inUnitSelection(unit.getBody())) {
-				System.out.println("UNIT Selected");
 				return unit;
 			}
 		}
 		if (selectedUnit == null) {
 			if (inBaseSelection(owner.getBuildingList().get(0).getBody())) {
-				System.out.println("Base Selected");
 				return owner.getBuildingList().get(0);
 			}
 		}
@@ -115,7 +109,6 @@ public class Cursor {
 		double width = aabb.getWidth();
 		double minX = body.getWorldCenter().x-width/2+8;
 		double maxX = minX+15;
-		System.out.println(minX +  "  " +maxX);
 		return position > minX && position < maxX;
 	}
 	

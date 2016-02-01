@@ -17,18 +17,19 @@ public class GameModel extends Game {
 	private WorldMap worldMap;
 	private List<Player> playerList = new ArrayList<Player>();
 	private MusicPlayer musicPlayer;
+	private boolean showIntro;
 
 	public GameModel(int amountPlayers) {
 		MapFactory factory = new MapFactory();
 		Map map = factory.loadMap("data/maps/test4.tmx");
 		this.setMap(map);
+		this.showIntro = true;
 		
 		worldMap = new WorldMap(map.getGameObjectsWithProp("resource"), (Shrine) map.getGameObjectsWithProp("shrine").get(0));
 		addPlayers(amountPlayers, map, worldMap);
 		Body unitBody = new Body();
 		unitBody.shift(new Vector2(100,27));
 		/*unitBody.addFixture(new Rectangle(5,1));*/
-		System.out.println((Base) playerList.get(1).getBuildingList().get(0));
 		Unit unit = new Unit("harry",unitBody,playerList.get(1), (Base) playerList.get(1).getBuildingList().get(0));
 		unit.createBody();
 		unit.setJob(new JobLess());
@@ -70,5 +71,13 @@ public class GameModel extends Game {
 	public List<Player> getPlayerList() {
 		return playerList;
 	}	
+	
+	public void setShowIntro(boolean show) {
+		this.showIntro = show;
+	}
+	
+	public boolean isShowIntro() {
+		return this.showIntro;
+	}
 	
 }

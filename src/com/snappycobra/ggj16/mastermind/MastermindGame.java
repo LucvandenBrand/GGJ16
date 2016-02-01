@@ -15,18 +15,15 @@ public class MastermindGame {
 	public MastermindGame(int length) {
 		this.length = length;
 		solution = Combination.generateSolution(length);
-		System.out.println(solution);
 		currentTry = new Combination(length);
 		oldTries = new ArrayList<OldCombination>();
 	}
 	
 	public boolean addResource(Resource res) {
 		currentTry.addResource(res);
-		System.out.println("someone is playing!");
 		if (currentTry.isFull()) {
 			System.out.println("the try is full");
 			if (currentTry.Compare(solution)) {
-				System.out.println("WINNNEER");
 				return true;
 			} else {
 				List<Integer> result = currentTry.checkInSolution(solution);

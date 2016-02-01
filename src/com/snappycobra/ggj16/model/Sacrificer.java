@@ -35,7 +35,6 @@ public class Sacrificer extends Job {
 	}
 	
 	public void Offer() {
-		System.out.println("play Resource" + resource.getRealName());
 		owner.getOwner().playMastermind(resource);
 	}
 

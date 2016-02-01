@@ -23,7 +23,6 @@ public abstract class Resource{
 		case "Silver":
 			return new Silverfish();
 		default:
-			System.out.println("Not recognized:"+resName);
 			break;
 		}
 		return null;
